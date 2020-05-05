@@ -4,8 +4,8 @@ on:
   push:
     branches: 
       - master
-  schedule:
-    - cron: '0 16 * * *'
+  watch:
+      types: started
 jobs:
   Bing-spider:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
         run: pip install -r ./requirements.txt
       - name: 'Working'
         timeout-minutes: 350
-        run: bash ./main.sh
+        run: python spider.py
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
